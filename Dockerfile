@@ -66,7 +66,7 @@ RUN update-alternatives --install /usr/bin/clang++ clang++ $(which clang++-${LLV
 ENV KEYRING_FILE="/usr/share/keyrings/kitware-archive-keyring.gpg"
 RUN wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null \
         | gpg --dearmor - | tee "${KEYRING_FILE}" >/dev/null && \
-    echo 'deb [signed-by=${KEYRING_FILE}] https://apt.kitware.com/ubuntu/ ${VARIANT} main' \
+    echo "deb [signed-by=${KEYRING_FILE}] https://apt.kitware.com/ubuntu/ ${VARIANT} main" \
         | tee /etc/apt/sources.list.d/kitware.list >/dev/null && \
     apt-get update && \
     rm "${KEYRING_FILE}" && \
